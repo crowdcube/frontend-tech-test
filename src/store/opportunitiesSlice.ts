@@ -3,7 +3,7 @@ import {
   getOpportunities,
   initialiseOpportunityCache,
 } from "../api/opportunities";
-import { FullOpportunityModel, MinimalOpportunityModel } from "../types";
+import { FullOpportunityModel, MinimalOpportunityModel, SortOptions } from "../types";
 
 export type OpportunitiesState = {
   list: string[];
@@ -21,7 +21,7 @@ const getOpportunity = initialiseOpportunityCache();
 
 export const fetchOpportunities = createAsyncThunk<
   MinimalOpportunityModel[],
-  undefined | "most-recent" | "percentage" | "name-desc" | "name-asc"
+  SortOptions | undefined
 >("opportunities/fetchOpportunities", (sort) => getOpportunities(sort));
 
 export const fetchOpportunity = createAsyncThunk<FullOpportunityModel, string>(

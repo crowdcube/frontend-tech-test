@@ -1,7 +1,7 @@
-import { MinimalOpportunityModel } from "../types";
+import { MinimalOpportunityModel, SortOptions } from "../types";
 
 export const getOpportunities = async (
-  sort?: "most-recent" | "percentage" | "name-desc" | "name-asc"
+  sort?: SortOptions
 ) => {
   const response = await fetch(
     `http://localhost:9001/api/opportunities${sort ? `?sort=${sort}` : ""}`

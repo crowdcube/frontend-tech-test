@@ -28,3 +28,5 @@ export interface OpportunityBlock {
 export interface FullOpportunityModel extends MinimalOpportunityModel {
   blocks:OpportunityBlock[];
 }
+
+export type SortOptions = "most-recent" | "percentage" | "name-desc" | "name-asc";
