@@ -7,6 +7,7 @@ import { FullOpportunityModel, MinimalOpportunityModel, SortOptions } from "../t
 
 export type OpportunitiesState = {
   list: string[];
+  sort: SortOptions;
   items: Record<string, MinimalOpportunityModel | FullOpportunityModel>;
   status: "untouched" | "idle" | "loading" | "failed";
 };
@@ -14,6 +15,7 @@ export type OpportunitiesState = {
 const initialState: OpportunitiesState = {
   list: [],
   items: {},
+  sort: "most-recent",
   status: "untouched",
 };
 
@@ -32,7 +34,17 @@ export const fetchOpportunity = createAsyncThunk<FullOpportunityModel, string>(
 export const opportunitiesSlice = createSlice({
   name: "opportunities",
   initialState,
-  reducers: {},
+  reducers: {
+    /**
+     * Set the sort order of the opportunities list.
+     * @param state OpportunitiesState
+     * @param action { type: "opportunities/setSort", payload: SortOptions }   
+     */
+    setSort: (state: OpportunitiesState, { payload }) => {
+      const sortvalue = payload as SortOptions;
+      state.sort = sortvalue;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOpportunities.pending, (state) => {
@@ -61,6 +73,7 @@ export const opportunitiesSlice = createSlice({
 export const opportunitiesActions = {
   fetchOpportunities,
   fetchOpportunity,
+  setSort: opportunitiesSlice.actions.setSort,
 };
 
 export const opportunitiesReducer = opportunitiesSlice.reducer;
