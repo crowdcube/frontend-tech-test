@@ -13,10 +13,10 @@ export const OpportunityPage: React.FC = () => {
     dispatch(opportunitiesActions.fetchOpportunity(id));
   }, [id, dispatch]);
 
-  console.log(location);
   if (!opportunity) {
     return null;
   }
+
   return (
     <>
       <h1>{opportunity.name}</h1>
