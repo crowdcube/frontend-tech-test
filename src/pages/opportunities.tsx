@@ -27,7 +27,6 @@ export const OpportunitiesPage: React.FC = () => {
         <option value="name-desc">a-z</option>
         <option value="name-asc">z-a</option>
       </select>
-
       <OpportunitiesList />
     </>
   );
