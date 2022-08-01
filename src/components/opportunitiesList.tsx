@@ -8,6 +8,11 @@ const StyledList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-top: 20px; 
+  display: grid;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `;
 
 const StyledListItem = styled.li``;
@@ -20,8 +25,8 @@ export const OpportunitiesList: React.FC = () => {
   const opportunities = useAppSelector((state) => state.opportunities);
 
   React.useEffect(() => {
-    dispatch(opportunitiesActions.fetchOpportunities());
-  }, [dispatch]);
+    dispatch(opportunitiesActions.fetchOpportunities(opportunities.sort));
+  }, [dispatch, opportunities.sort]);
 
   return (
     <StyledList>
