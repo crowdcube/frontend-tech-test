@@ -1,7 +1,7 @@
 import { MinimalOpportunityModel, SortOptions } from "../types";
 
 // For the sake of the task. move this here.
-interface CacheObject { 
+interface CacheObject {
   [id: string]: Record<string, MinimalOpportunityModel>;
 }
 // For the sake of the task. move this here.
@@ -10,7 +10,7 @@ const cache: CacheObject = {};
 
 export const getOpportunities = async (
   sort?: SortOptions
-) => {  
+) => {
   const response = await fetch(
     `http://localhost:9001/api/opportunities${sort ? `?sort=${sort}` : ""}`
   );
